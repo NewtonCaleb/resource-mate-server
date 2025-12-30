@@ -1,0 +1,105 @@
+USE social_work;
+
+CREATE TABLE IF NOT EXISTS Users (
+    Id INT NOT NULL AUTO_INCREMENT,
+    FirstName NVARCHAR(255) NOT NULL,
+    MiddleName NVARCHAR(255),
+    LastName NVARCHAR(255) NOT NULL,
+    Email NVARCHAR(255) NOT NULL,
+    Phone NVARCHAR(16),
+    Password BINARY(60) NOT NULL,
+    LastUpdatedBy INT NULL,
+    LastUpdatedAt TIMESTAMP NOT NULL,
+    CreatedBy INT,    
+    CreatedAt TIMESTAMP DEFAULT UTC_TIMESTAMP() NOT NULL,
+    PRIMARY KEY (Id),
+    FOREIGN KEY (CreatedBy) REFERENCES Users(Id),
+    FOREIGN KEY (LastUpdatedBy) REFERENCES Users(Id)
+);
+
+CREATE TABLE IF NOT EXISTS Agencies (
+    Id INT NOT NULL AUTO_INCREMENT,
+    LastUpdatedBy INT NOT NULL,
+    Name NVARCHAR(255) NOT NULL,
+    City NVARCHAR(255) NOT NULL,
+    State NVARCHAR(255) NOT NULL,
+    Zip NVARCHAR(16) NOT NULL,
+    Email NVARCHAR(255) NOT NULL,
+    Phone NVARCHAR(16) NOT NULL,
+    Website NVARCHAR(MAX),
+    LastUpdatedAt TIMESTAMP NOT NULL,
+    CreatedBy INT NOT NULL,
+    CreatedAt TIMESTAMP DEFAULT UTC_TIMESTAMP() NOT NULL,
+    PRIMARY KEY (Id),
+    FOREIGN KEY (CreatedBy) REFERENCES Users(Id),
+    FOREIGN KEY (LastUpdatedBy) REFERENCES Users(Id)
+);
+
+CREATE TABLE IF NOT EXISTS PopulationTypes (
+    Id INT NOT NULL AUTO_INCREMENT,
+    LastUpdatedBy INT NOT NULL,
+    Label NVARCHAR(255) NOT NULL,
+    LastUpdatedAt TIMESTAMP NOT NULL,
+    CreatedBy INT NOT NULL,
+    CreatedAt TIMESTAMP DEFAULT UTC_TIMESTAMP() NOT NULL,
+    PRIMARY KEY (Id),
+    FOREIGN KEY (CreatedBy) REFERENCES Users(Id),
+    FOREIGN KEY (LastUpdatedBy) REFERENCES Users(Id)
+);
+
+CREATE TABLE IF NOT EXISTS ServiceTypes (
+    Id INT NOT NULL AUTO_INCREMENT,
+    LastUpdatedBy INT NOT NULL,
+    Label NVARCHAR(255) NOT NULL,
+    LastUpdatedAt TIMESTAMP NOT NULL,
+    CreatedBy INT NOT NULL,
+    CreatedAt TIMESTAMP DEFAULT UTC_TIMESTAMP() NOT NULL,
+    PRIMARY KEY (Id),
+    FOREIGN KEY (CreatedBy) REFERENCES Users(Id),
+    FOREIGN KEY (LastUpdatedBy) REFERENCES Users(Id)
+);
+
+CREATE TABLE IF NOT EXISTS ServiceSubTypes (
+    Id INT NOT NULL AUTO_INCREMENT,
+    ServiceTypeId INT NOT NULL,
+    LastUpdatedBy INT NOT NULL,
+    Label NVARCHAR(255) NOT NULL,
+    LastUpdatedAt TIMESTAMP NOT NULL,
+    CreatedBy INT NOT NULL,
+    CreatedAt TIMESTAMP DEFAULT UTC_TIMESTAMP() NOT NULL,
+    PRIMARY KEY (Id),
+    FOREIGN KEY (ServiceTypeId) REFERENCES ServiceTypes(Id),
+    FOREIGN KEY (CreatedBy) REFERENCES Users(Id),
+    FOREIGN KEY (LastUpdatedBy) REFERENCES Users(Id)
+);
+
+CREATE TABLE IF NOT EXISTS Services (
+    Id INT NOT NULL AUTO_INCREMENT,
+    AgencyId INT NULL,
+    ServiceTypeId INT NOT NULL,
+    ServiceSubTypeId INT NULL,
+    PopulationTypeId INT NOT NULL,
+    LastUpdatedBy INT NOT NULL,
+    Name NVARCHAR(255) NOT NULL,
+    StreetAdress VARCHAR(MAX) NOT NULL,
+    City VARCHAR(MAX) NOT NULL,
+    State VARCHAR(255) NOT NULL,
+    Zip VARCHAR(24) NOT NULL,
+    Email NVARCHAR(MAX) NOT NULL,
+    Phone VARCHAR(16) NOT NULL,
+    Website NVARCHAR(MAX),
+    Cost NVARCHAR(MAX),
+    Requirements NVARCHAR(MAX),
+    Description NVARCHAR(MAX),
+    ExtraNotes NVARCHAR(MAX),
+    LastUpdatedAt TIMESTAMP NOT NULL,
+    CreatedBy INT NOT NULL,
+    CreatedAt TIMESTAMP DEFAULT UTC_TIMESTAMP() NOT NULL,
+    PRIMARY KEY (Id),
+    FOREIGN KEY (AgencyId) REFERENCES Agencies(Id),
+    FOREIGN KEY (ServiceTypeId) REFERENCES ServiceTypes(Id),
+    FOREIGN KEY (ServiceSubTypeId) REFERENCES ServiceSubTypes(Id),
+    FOREIGN KEY (PopulationTypeId) REFERENCES PopulationTypes(Id),
+    FOREIGN KEY (CreatedBy) REFERENCES Users(Id),
+    FOREIGN KEY (LastUpdatedBy) REFERENCES Users(Id)
+);

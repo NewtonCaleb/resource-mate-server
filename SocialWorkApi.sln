@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialWorkApi", "SocialWorkApi.csproj", "{E508501F-9D6E-07D1-BE15-0F6505BF990F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E508501F-9D6E-07D1-BE15-0F6505BF990F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E508501F-9D6E-07D1-BE15-0F6505BF990F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E508501F-9D6E-07D1-BE15-0F6505BF990F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E508501F-9D6E-07D1-BE15-0F6505BF990F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C4311051-1CFE-4128-83C5-43FE01AEAF18}
+	EndGlobalSection
+EndGlobal
