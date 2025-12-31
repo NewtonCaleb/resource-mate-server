@@ -1,5 +1,5 @@
-using SocialWorkApi.Domain.Dto.ServiceSubTypes;
-using SocialWorkApi.Domain.Dto.ServiceTypes;
+using SocialWorkApi.API.Dto.ServiceSubTypes;
+using SocialWorkApi.API.Dto.ServiceTypes;
 using SocialWorkApi.Domain.Entities.ServiceSubTypes;
 using SocialWorkApi.Domain.Entities.ServiceTypes;
 

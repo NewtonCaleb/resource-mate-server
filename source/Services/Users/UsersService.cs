@@ -3,7 +3,7 @@ using SocialWorkApi.Services.Database;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using SocialWorkApi.Domain.Dto.Users;
+using SocialWorkApi.API.Dto.Users;
 
 namespace SocialWorkApi.Services.Users;
 
@@ -34,7 +34,7 @@ public class UsersService(ApplicationContext _dbContext) : IUsersService
         if (userToRemove == null)
         {
             return;
-        }        
+        }
 
         db.Remove(userToRemove);
         await db.SaveChangesAsync();
@@ -46,7 +46,7 @@ public class UsersService(ApplicationContext _dbContext) : IUsersService
         userToUpdate.LastUpdatedAt = DateTime.UtcNow;
         userToUpdate.LastUpdatedById = updatedUserId;
 
-        db.Update<User>(EntityMerger.Merge(userToUpdate,originalEntity));
+        db.Update<User>(EntityMerger.Merge(userToUpdate, originalEntity));
         await db.SaveChangesAsync();
     }
 }

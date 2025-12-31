@@ -1,4 +1,4 @@
-using SocialWorkApi.Domain.Dto.Users;
+using SocialWorkApi.API.Dto.Users;
 using SocialWorkApi.Domain.Entities.Users;
 namespace SocialWorkApi.Services.Users;
 

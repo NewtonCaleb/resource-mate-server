@@ -9,7 +9,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using BCrypt.Net;
 using SocialWorkApi.Domain.Entities.Users;
-using SocialWorkApi.Domain.Dto.Auth;
+using SocialWorkApi.API.Dto.Auth;
 using Mapster;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore;
@@ -27,7 +27,7 @@ public class AuthSerivce(ApplicationContext _dbContext, IOptions<AuthOptions> _a
         u.LastUpdatedAt = DateTime.UtcNow;
         u.LastUpdatedById = updaterUserId;
         u.CreatedById = updaterUserId;
-        
+
         EntityEntry<User> addedUser = await dbContext.AddAsync(u);
         await dbContext.SaveChangesAsync();
 

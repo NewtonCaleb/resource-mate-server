@@ -47,7 +47,7 @@ public class AuthController(IAuthService _authService, IValidator<LoginDto> _val
         string? token = await authService.Login(login.Email!, login.Password!);
         if (token == null)
         {
-            return BadRequest("Invalid login");
+            return Unauthorized("Invalid login");
         }
 
         return Ok(new { token });

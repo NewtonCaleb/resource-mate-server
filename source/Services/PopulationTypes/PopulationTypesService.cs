@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using SocialWorkApi.Domain.Dto.PopulationTypes;
+using SocialWorkApi.API.Dto.PopulationTypes;
 using SocialWorkApi.Domain.Entities.PopulationTypes;
 using SocialWorkApi.Services.Database;
 

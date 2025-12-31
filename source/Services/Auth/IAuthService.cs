@@ -1,4 +1,4 @@
-using SocialWorkApi.Domain.Dto.Auth;
+using SocialWorkApi.API.Dto.Auth;
 
 namespace SocialWorkApi.Services.Auth;
 

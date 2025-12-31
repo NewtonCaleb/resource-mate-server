@@ -1,4 +1,4 @@
-using SocialWorkApi.Domain.Dto.PopulationTypes;
+using SocialWorkApi.API.Dto.PopulationTypes;
 using SocialWorkApi.Domain.Entities.PopulationTypes;
 
 namespace SocialWorkApi.Services.PopulationTypes;

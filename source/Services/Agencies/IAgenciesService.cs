@@ -1,4 +1,4 @@
-using SocialWorkApi.Domain.Dto.Agencies;
+using SocialWorkApi.API.Dto.Agencies;
 using SocialWorkApi.Domain.Entities.Agencies;
 
 namespace SocialWorkApi.Services.Agencies;

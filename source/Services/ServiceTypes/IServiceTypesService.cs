@@ -1,4 +1,4 @@
-using SocialWorkApi.Domain.Dto.ServiceTypes;
+using SocialWorkApi.API.Dto.ServiceTypes;
 using SocialWorkApi.Domain.Entities.ServiceTypes;
 
 namespace SocialWorkApi.Services.ServiceTypes;
