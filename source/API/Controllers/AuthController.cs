@@ -39,9 +39,6 @@ public class AuthController(IAuthService _authService, IValidator<LoginDto> _val
     [HttpPost("Users/Login")]
     public async Task<ActionResult<UserDto>> Login(LoginDto login)
     {
-        Console.WriteLine(login.Password);
-        Console.WriteLine();
-        Console.WriteLine(login.Email);
         validator.ValidateAndThrow(login);
 
         string? token = await authService.Login(login.Email!, login.Password!);

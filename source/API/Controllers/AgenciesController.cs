@@ -28,27 +28,26 @@ public class AgenciesController(IAgenciesService _agenciesService) : ControllerB
     }
 
     [HttpPost]
-    public async Task<ActionResult<int>> Add(CreateAgencyDto typeToCreate)
+    public async Task<ActionResult<int>> Add(CreateAgencyDto agencyToCreate)
     {
         string? userId = User.FindFirstValue("Id");
         if (userId == null) return Unauthorized();
         bool parseSuccessful = int.TryParse(userId, out int parsedUserId);
         if (!parseSuccessful) throw new Exception("Unable to parse UserId");
 
-        Agency type = typeToCreate.Adapt<Agency>();
-        return Ok(await agenciesService.Add(type, parsedUserId));
+        Agency adaptedAgency = agencyToCreate.Adapt<Agency>();
+        return Ok(await agenciesService.Add(adaptedAgency, parsedUserId));
     }
 
     [HttpPut]
-    public async Task<IActionResult> Update(UpdateAgencyDto typeToUpdate)
+    public async Task<IActionResult> Update(UpdateAgencyDto agencyToUpdate)
     {
         string? userId = User.FindFirstValue("Id");
         if (userId == null) return Unauthorized();
         bool parseSuccessful = int.TryParse(userId, out int parsedUserId);
         if (!parseSuccessful) throw new Exception("Unable to parse UserId");
 
-        Agency type = typeToUpdate.Adapt<Agency>();
-        await agenciesService.Update(typeToUpdate, parsedUserId);
+        await agenciesService.Update(agencyToUpdate, parsedUserId);
         return Ok();
 
     }

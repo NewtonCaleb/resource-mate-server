@@ -65,7 +65,6 @@ public class DbService(IOptions<DbOptions> options) : IDbService
         IEnumerable<string> columnNames = parameters.Keys.Select((key) => key.StartsWith('@') ? key[1..] : key);
 
         string sql = $"INSERT INTO {table} ({string.Join(",", columnNames)}) VALUES ({string.Join(",", valueKeys)});";
-        Console.WriteLine(sql);
         try
         {
             await using MySqlConnection connection = new(_dbConfig.ConnectionString);
@@ -108,7 +107,7 @@ public class DbService(IOptions<DbOptions> options) : IDbService
             await connection.OpenAsync();
             await using MySqlCommand command = new(sql, connection);
 
-            List<MySqlParameter> args = [..GetSqlParamters(parameters)];
+            List<MySqlParameter> args = [.. GetSqlParamters(parameters)];
             command.Parameters.AddRange(args.ToArray());
             await command.ExecuteNonQueryAsync();
 
@@ -131,7 +130,7 @@ public class DbService(IOptions<DbOptions> options) : IDbService
 
     public async Task Update(IDictionary<string, object> parameters, string table)
     {
-        object id = parameters?.TryGetPropertyValue<IDictionary<string,object>>("Id", null) ?? throw new Exception("Id is missing");
+        object id = parameters?.TryGetPropertyValue<IDictionary<string, object>>("Id", null) ?? throw new Exception("Id is missing");
         parameters.Remove("Id");
 
         IEnumerable<string> valueKeys = parameters.Keys.Select((key) => !key.StartsWith('@') ? $"@{key}" : key);
@@ -145,7 +144,7 @@ public class DbService(IOptions<DbOptions> options) : IDbService
             await connection.OpenAsync();
             await using MySqlCommand command = new(sql, connection);
 
-            List<MySqlParameter> sqlArgs = [new("@Id", id), ..GetSqlParamters(parameters)];
+            List<MySqlParameter> sqlArgs = [new("@Id", id), .. GetSqlParamters(parameters)];
 
             command.Parameters.AddRange(sqlArgs.ToArray());
 
@@ -163,7 +162,7 @@ public class DbService(IOptions<DbOptions> options) : IDbService
         parameters.TryGetValue("Id", out object? id);
         if (id == null)
         {
-            throw new Exception("No Id was passed");            
+            throw new Exception("No Id was passed");
         }
         parameters.Remove("Id");
 
@@ -178,7 +177,7 @@ public class DbService(IOptions<DbOptions> options) : IDbService
             await connection.OpenAsync();
             await using MySqlCommand command = new(sql, connection);
 
-            List<MySqlParameter> sqlArgs = [new MySqlParameter("@Id", id), ..GetSqlParamters(parameters)];
+            List<MySqlParameter> sqlArgs = [new MySqlParameter("@Id", id), .. GetSqlParamters(parameters)];
 
             command.Parameters.AddRange(sqlArgs.ToArray());
 
