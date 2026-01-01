@@ -16,15 +16,21 @@ public class AgenciesController(IAgenciesService _agenciesService) : ControllerB
     private readonly IAgenciesService agenciesService = _agenciesService;
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Agency>>> GetAll()
+    public async Task<ActionResult<IEnumerable<AgencyDto>>> GetAll()
     {
         return Ok(await agenciesService.GetAll());
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Agency?>> GetById(int id)
+    public async Task<ActionResult<AgencyDto?>> GetById(int id)
     {
-        return Ok(await agenciesService.GetById(id));
+        Agency? foundAgency = await agenciesService.GetById(id);
+        if (foundAgency == null)
+        {
+            return NoContent();
+        }
+
+        return Ok(foundAgency.Adapt<AgencyDto>());
     }
 
     [HttpPost]

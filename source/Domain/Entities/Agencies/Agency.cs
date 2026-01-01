@@ -13,6 +13,7 @@ public class Agency
     public required string Email { get; set; }
     public string? Phone { get; set; }
     public string? Website { get; set; }
+    public string? Description { get; set; }
     public bool Deleted { get; set; }
     public DateTime? LastUpdatedAt { get; set; }
     public DateTime? CreatedAt { get; set; }

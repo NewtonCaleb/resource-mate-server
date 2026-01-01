@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS Agencies (
     Email NVARCHAR(255) NOT NULL,
     Phone NVARCHAR(16) NOT NULL,
     Website TEXT,
+    Description MEDIUMTEXT,
     LastUpdatedAt TIMESTAMP NOT NULL,
     Deleted BOOLEAN DEFAULT 0 NOT NULL,
     CreatedBy INT NOT NULL,

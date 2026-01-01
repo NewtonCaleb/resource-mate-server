@@ -33,7 +33,7 @@ public class AgenciesService(ApplicationContext dbContext) : IAgenciesService
             return await dbContext.Set<Agency>().AsTracking().Where(s => s.Deleted != true).FirstOrDefaultAsync(s => s.Id == id);
         }
 
-        return await dbContext.Set<Agency>().Where(s => s.Deleted != true).FirstOrDefaultAsync(s => s.Id == id);
+        return await dbContext.Set<Agency>().Where(s => s.Deleted != true).Include(a => a.CreatedBy).Include(a => a.LastUpdatedBy).FirstOrDefaultAsync(s => s.Id == id);
     }
 
     async public Task Remove(int id, int updaterUserId)

@@ -12,6 +12,7 @@ public class AgencyDto()
     public required string Email { get; set; }
     public string? Phone { get; set; }
     public string? Website { get; set; }
+    public string? Description { get; set; }
     public bool Deleted { get; set; }
     public DateTime? LastUpdatedAt { get; set; }
     public DateTime? CreatedAt { get; set; }
@@ -19,9 +20,7 @@ public class AgencyDto()
 
     // FK
     public UserDto? LastUpdatedBy { get; set; }
-    public int? LastUpdatedById { get; set; }
     public UserDto? CreatedBy { get; set; }
-    public int? CreatedById { get; set; }
 
     // Children
     // public ICollection<Service>? Services { get; set; }
