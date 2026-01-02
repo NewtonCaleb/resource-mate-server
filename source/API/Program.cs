@@ -101,11 +101,11 @@ app.UseExceptionHandler();
 
 app.UseHttpsRedirection();
 
+app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseCors();
 
 app.Run();

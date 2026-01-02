@@ -16,41 +16,39 @@ public class ServicesController(IServicesService _servicesService) : ControllerB
     private readonly IServicesService servicesService = _servicesService;
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Service>>> GetAll()
+    public async Task<ActionResult<IEnumerable<ServiceDto>>> GetAll()
     {
         return Ok(await servicesService.GetAll());
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Service?>> GetById(int id)
+    public async Task<ActionResult<ServiceDto?>> GetById(int id)
     {
         return Ok(await servicesService.GetById(id));
     }
 
     [HttpPost]
-    public async Task<ActionResult<int>> Add(CreateServiceDto typeToCreate)
+    public async Task<ActionResult<int>> Add(CreateServiceDto serviceToCreate)
     {
         string? userId = User.FindFirstValue("Id");
         if (userId == null) return Unauthorized();
         bool parseSuccessful = int.TryParse(userId, out int parsedUserId);
         if (!parseSuccessful) throw new Exception("Unable to parse UserId");
 
-        Service type = typeToCreate.Adapt<Service>();
-        return Ok(await servicesService.Add(type, parsedUserId));
+        Service service = serviceToCreate.Adapt<Service>();
+        return Ok(await servicesService.Add(service, parsedUserId));
     }
 
     [HttpPut]
-    public async Task<IActionResult> Update(UpdateServiceDto typeToUpdate)
+    public async Task<IActionResult> Update(UpdateServiceDto serviceToUpdate)
     {
         string? userId = User.FindFirstValue("Id");
         if (userId == null) return Unauthorized();
         bool parseSuccessful = int.TryParse(userId, out int parsedUserId);
         if (!parseSuccessful) throw new Exception("Unable to parse UserId");
 
-        Service type = typeToUpdate.Adapt<Service>();
-        await servicesService.Update(typeToUpdate, parsedUserId);
+        await servicesService.Update(serviceToUpdate, parsedUserId);
         return Ok();
-
     }
 
     [HttpDelete("{id}")]
