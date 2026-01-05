@@ -18,7 +18,6 @@ public class Agency
     public DateTime? LastUpdatedAt { get; set; }
     public DateTime? CreatedAt { get; set; }
 
-
     // FK
     public User? LastUpdatedBy { get; set; }
     public int? LastUpdatedById { get; set; }

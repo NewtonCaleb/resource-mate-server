@@ -24,7 +24,30 @@ public class ServicesController(IServicesService _servicesService) : ControllerB
     [HttpGet("{id}")]
     public async Task<ActionResult<ServiceDto?>> GetById(int id)
     {
-        return Ok(await servicesService.GetById(id));
+        Service? service = await servicesService.GetById(id);
+        if (service == null)
+        {
+            return NoContent();
+        }
+
+        //     var config = new TypeAdapterConfig();
+        //     config.NewConfig<Service, ServiceDto>()
+        // .Ignore(dest => dest.ServiceType.Services)
+        // .Ignore(dest => dest.ServiceType.ServiceSubTypes)
+        // .Ignore(dest => dest.ServiceSubType.Services)
+        // .Ignore(dest => dest.PopulationType.Services);
+
+        try
+        {
+            service.Adapt<ServiceDto>();
+        }
+        catch (System.Exception e)
+        {
+            Console.WriteLine(e.Message);
+            throw;
+        }
+
+        return Ok(service.Adapt<ServiceDto>());
     }
 
     [HttpPost]

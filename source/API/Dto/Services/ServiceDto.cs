@@ -1,10 +1,8 @@
-using SocialWorkApi.Domain.Entities.Agencies;
-using SocialWorkApi.Domain.Entities.ServiceSubTypes;
-using SocialWorkApi.Domain.Entities.ServiceTypes;
-using SocialWorkApi.Domain.Entities.PopulationTypes;
-using SocialWorkApi.Domain.Entities.Users;
 using SocialWorkApi.API.Dto.Users;
 using SocialWorkApi.API.Dto.Agencies;
+using SocialWorkApi.API.Dto.ServiceTypes;
+using SocialWorkApi.API.Dto.ServiceSubTypes;
+using SocialWorkApi.API.Dto.PopulationTypes;
 
 namespace SocialWorkApi.API.Dto.Services;
 
@@ -28,15 +26,15 @@ public class ServiceDto
     public DateTime CreatedAt { get; set; }
 
     // FK
-    public UserDto? CreatedBy { get; set; }
+    public SlimUserDto? CreatedBy { get; set; }
 
-    public UserDto? LastUpdatedBy { get; set; }
+    public SlimUserDto? LastUpdatedBy { get; set; }
 
     public AgencyDto? Agency { get; set; }
 
-    public ServiceType? ServiceType { get; set; }
+    public SlimServiceTypeDto? ServiceType { get; set; }
 
-    public ServiceSubType? ServiceSubType { get; set; }
+    public SlimServiceSubTypeDto? ServiceSubType { get; set; }
 
-    public PopulationType? PopulationType { get; set; }
+    public SlimPopulationTypeDto? PopulationType { get; set; }
 }

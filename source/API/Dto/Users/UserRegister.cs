@@ -7,8 +7,8 @@ public class UserRegister() : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        config.NewConfig<User, UserDto>()
-        .IgnoreMember((u, side) => u.Name == "CreatedById" && side == MemberSide.Source)
-        .IgnoreMember((u, side) => u.Name == "LastUpdatedById" && side == MemberSide.Source);
+        // config.NewConfig<User, UserDto>()
+        // .IgnoreMember((u, side) => u.Name == "CreatedById" && side == MemberSide.Source)
+        // .IgnoreMember((u, side) => u.Name == "LastUpdatedById" && side == MemberSide.Source);
     }
 }
