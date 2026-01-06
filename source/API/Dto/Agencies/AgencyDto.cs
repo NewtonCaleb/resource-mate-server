@@ -1,3 +1,4 @@
+using SocialWorkApi.API.Dto.Services;
 using SocialWorkApi.API.Dto.Users;
 
 namespace SocialWorkApi.API.Dto.Agencies;
@@ -19,9 +20,9 @@ public class AgencyDto()
 
 
     // FK
-    public UserDto? LastUpdatedBy { get; set; }
-    public UserDto? CreatedBy { get; set; }
+    public SlimUserDto? LastUpdatedBy { get; set; }
+    public SlimUserDto? CreatedBy { get; set; }
 
     // Children
-    // public ICollection<Service>? Services { get; set; }
+    public ICollection<SlimServiceDto>? Services { get; set; }
 }
